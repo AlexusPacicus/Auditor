@@ -1,0 +1,35 @@
+## Hallazgos
+
+- **categoria**: presencia_secciones_anunciadas  
+  - **referencia_explicita**:  
+    `# Documentación de soporte`  
+    `- [Resultados y análisis del modelo](docs/results.md)`  
+    `- [Arquitectura del sistema](docs/arquitectura.md)`  
+    `- [Datos y proceso de curación](docs/data.md)`  
+    `- [Sistema de scoring heurístico](docs/scoring.md)`  
+    `- [Extracción de señales y features](docs/features.md)`  
+    `- [Modelo y criterios de decisión](docs/model.md)`  
+    `- [Evolución del sistema (v1 → v2)](docs/evolucion_v1_v2.md)`  
+  - **descripcion_breve**: H-01 — Se listan documentos de soporte mediante enlaces explícitos, pero esos documentos no forman parte de los inputs proporcionados (se aporta `data/README.md`; `data/scoring.md` está ausente y se omite del análisis).  
+  - **estado**: presente
+
+- **categoria**: presencia_secciones_anunciadas  
+  - **referencia_explicita**: `![Visión general del sistema](assets/diagrams/pipeline.png)`  
+  - **descripcion_breve**: H-02 — Se referencia un diagrama (“Visión general del sistema”) mediante una ruta explícita, pero el recurso no está incluido en los inputs proporcionados.  
+  - **estado**: presente
+
+- **categoria**: coherencia_interna_documento  
+  - **referencia_explicita**: `... mejorar la detección fuera de la distribución actual.e`  
+  - **descripcion_breve**: H-03 — El `README.md` termina con un carácter “e” residual tras un punto (“actual.e”).  
+  - **estado**: presente
+
+## Sugerencias
+
+- **hallazgo_id_ref**: H-01  
+  - **accion_documental**: Incluir en el paquete de documentación los ficheros enlazados en “Documentación de soporte” (o, alternativamente, indicar explícitamente en `README.md` cuáles no se incluyen en el material aportado).
+
+- **hallazgo_id_ref**: H-02  
+  - **accion_documental**: Adjuntar el recurso `assets/diagrams/pipeline.png` junto con `README.md` (o añadir una alternativa textual/ubicación accesible del diagrama en la propia documentación).
+
+- **hallazgo_id_ref**: H-03  
+  - **accion_documental**: Revisar y corregir la errata final en `README.md` para eliminar el carácter residual (“actual.e”).
