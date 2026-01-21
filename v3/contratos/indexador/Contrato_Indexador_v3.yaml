@@ -1,0 +1,46 @@
+identidad:
+  contract_id: contrato_indexador_v3
+  version: "3.0"
+  estado: CONGELADO
+
+limites_del_contrato:
+  puede:
+    - leer_documentos_aceptados
+    - asignar_identificadores_internos_deterministas
+    - emitir_entradas_indice
+  no_puede:
+    - aceptar_documentos_fuera_del_schema_de_entrada
+    - declarar_orden_como_garantia_contractual
+
+  
+
+inputs:
+  artefactos_requeridos:
+    - documentos_aceptados
+
+reglas_normativas:
+  correspondencia_uno_a_uno: true
+  unicidad_index_id: true
+  indice_inmutable: true
+
+output:
+  artefacto_de_salida:
+    - entradas_indice
+  campos_de_cada_entrada:
+    - index_id
+    - doc_id
+    - contenido
+  campos_exclusivos: true
+
+abort:
+  definidos_en_este_contrato: false
+  hereda_abort_de:
+    - Contrato_Base_Revisor_Documental_v3
+
+
+herencia_y_precedencia:
+  hereda_de:
+    - Contrato_Base_Revisor_Documental_v3
+  orden_de_precedencia:
+    - Contrato_Base_Revisor_Documental_v3
+    - Contrato_Indexador_v3

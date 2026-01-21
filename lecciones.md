@@ -201,3 +201,241 @@ Listo. Si quieres, las guardamos como lecciones_v3.md.
 
 
 
+# Lecciones aprendidas — Diseño contractual (Indexador v3)
+
+> Documento humano.  
+> No gobierna ejecución.  
+> Fuente de verdad: contratos YAML.
+
+---
+
+## 1. Comprensiones clave (insights)
+- Un contrato **no guía al modelo**, gobierna el sistema.
+- YAML **no describe**, **constriñe**.
+- No todo gobierno es binario (`if`): existe gobierno por **frontera**.
+- `puede / no_puede` define **superficie de acción**, no checks.
+- Las invariantes se **declaran**; el runtime las **comprueba después**.
+
+## 2. Errores cometidos
+- Mezclar explicación humana y gobierno en el mismo artefacto.
+- Intentar hacer ejecutable todo lo que aparece en el contrato.
+- Aceptar auditorías automáticas sin cuestionar su modelo mental.
+- Duplicar invariantes como reglas y como acciones prohibidas.
+
+## 3. Decisiones correctas
+- Separar contrato en **YAML (ley)** y **Markdown (explicación)**.
+- Congelar el contrato antes de pensar en runtime.
+- Tratar los auditores como herramientas, no como autoridad.
+- Mantener invariantes atómicas y explícitas.
+
+## 4. Decisiones descartadas (y por qué)
+- Convertir `puede / no_puede` en predicados ejecutables → rompe diseño.
+- Eliminar herencia del contrato base → perder invariantes globales.
+- Simplificar invariantes para “contentar” al auditor → empeora el contrato.
+
+## 5. Reglas mentales consolidadas
+- Si puede evaluarse true/false → YAML.
+- Si explica o justifica → Markdown.
+- Si el sistema funciona sin el MD → está bien diseñado.
+- Primero la ley, luego el policía.
+
+## 6. Patrones que funcionan
+- Invariantes declaradas como flags binarios.
+- Schema de output cerrado y exclusivo.
+- Herencia solo para reglas transversales.
+- Congelación temprana para evitar deriva.
+
+## 7. Antipatrones detectados
+- Texto libre en reglas normativas.
+- Verbos con payload implícito (`Leer: X`).
+- Redundancia semántica entre secciones.
+- Auditores que infieren intención.
+
+## 8. Sobre auditores automáticos
+- Qué detectan bien:
+  - Redundancias literales reales.
+  - Violaciones claras de herencia.
+- Falsos positivos recurrentes:
+  - Invariantes atómicas.
+  - Herencia de contratos base.
+  - Capacidades declarativas.
+- Qué NO deben evaluar:
+  - `puede / no_puede`
+  - Semántica implícita
+  - Intención del diseñador
+
+## 9. Separación correcta de capas
+- YAML:
+  - Ley del sistema
+  - Frontera y restricciones
+  - Invariantes declaradas
+- Markdown:
+  - Contexto
+  - Alcance
+  - Decisiones de diseño
+- Runtime:
+  - Predicados
+  - Checks
+  - Abort efectivo
+
+## 10. Lenguaje contractual
+### Verbos a usar
+- leer
+- emitir
+- asignar
+- heredar
+- abortar
+
+### Verbos a evitar
+- interpretar
+- evaluar
+- considerar
+- garantizar (si no es comprobable)
+
+## 11. Qué NO hacer en la próxima versión
+- No ampliar el contrato sin un rol nuevo claro.
+- No adaptar el contrato a tooling defectuoso.
+- No introducir checks de runtime prematuramente.
+
+## 12. Qué sí llegará en versiones futuras (NO ahora)
+- Tests contractuales automáticos.
+- Runtime mínimo que haga cumplir invariantes.
+- Auditorías cruzadas entre contratos (indexador → detector).
+
+# Lecciones aprendidas — Diseño contractual (Indexador v3)
+
+> Documento humano.  
+> No gobierna ejecución.  
+> Fuente de verdad: contratos YAML.
+
+---
+
+## 1. Comprensiones clave (insights)
+- Un contrato **no guía al modelo**, gobierna el sistema.
+- YAML **no describe**, **constriñe**.
+- No todo gobierno es binario (`if`): existe gobierno por **frontera**.
+- `puede / no_puede` define **superficie de acción**, no checks.
+- Las invariantes se **declaran**; el runtime las **comprueba después**.
+
+## 2. Errores cometidos
+- Mezclar explicación humana y gobierno en el mismo artefacto.
+- Intentar hacer ejecutable todo lo que aparece en el contrato.
+- Aceptar auditorías automáticas sin cuestionar su modelo mental.
+- Duplicar invariantes como reglas y como acciones prohibidas.
+
+## 3. Decisiones correctas
+- Separar contrato en **YAML (ley)** y **Markdown (explicación)**.
+- Congelar el contrato antes de pensar en runtime.
+- Tratar los auditores como herramientas, no como autoridad.
+- Mantener invariantes atómicas y explícitas.
+
+## 4. Decisiones descartadas (y por qué)
+- Convertir `puede / no_puede` en predicados ejecutables → rompe diseño.
+- Eliminar herencia del contrato base → perder invariantes globales.
+- Simplificar invariantes para “contentar” al auditor → empeora el contrato.
+
+## 5. Reglas mentales consolidadas
+- Si puede evaluarse true/false → YAML.
+- Si explica o justifica → Markdown.
+- Si el sistema funciona sin el MD → está bien diseñado.
+- Primero la ley, luego el policía.
+
+## 6. Patrones que funcionan
+- Invariantes declaradas como flags binarios.
+- Schema de output cerrado y exclusivo.
+- Herencia solo para reglas transversales.
+- Congelación temprana para evitar deriva.
+
+## 7. Antipatrones detectados
+- Texto libre en reglas normativas.
+- Verbos con payload implícito (`Leer: X`).
+- Redundancia semántica entre secciones.
+- Auditores que infieren intención.
+
+## 8. Sobre auditores automáticos
+- Qué detectan bien:
+  - Redundancias literales reales.
+  - Violaciones claras de herencia.
+- Falsos positivos recurrentes:
+  - Invariantes atómicas.
+  - Herencia de contratos base.
+  - Capacidades declarativas.
+- Qué NO deben evaluar:
+  - `puede / no_puede`
+  - Semántica implícita
+  - Intención del diseñador
+
+## 9. Separación correcta de capas
+- YAML:
+  - Ley del sistema
+  - Frontera y restricciones
+  - Invariantes declaradas
+- Markdown:
+  - Contexto
+  - Alcance
+  - Decisiones de diseño
+- Runtime:
+  - Predicados
+  - Checks
+  - Abort efectivo
+
+## 10. Lenguaje contractual
+### Verbos a usar
+- leer
+- emitir
+- asignar
+- heredar
+- abortar
+
+### Verbos a evitar
+- interpretar
+- evaluar
+- considerar
+- garantizar (si no es comprobable)
+
+## 11. Qué NO hacer en la próxima versión
+- No ampliar el contrato sin un rol nuevo claro.
+- No adaptar el contrato a tooling defectuoso.
+- No introducir checks de runtime prematuramente.
+
+## 12. Qué sí llegará en versiones futuras (NO ahora)
+- Tests contractuales automáticos.
+- Runtime mínimo que haga cumplir invariantes.
+- Auditorías cruzadas entre contratos (indexador → detector).
+
+---
+
+## Cierre
+- Estado del contrato: **FROZEN**
+- Motivo de congelación:
+  - El contrato gobierna correctamente y los hallazgos restantes son límites del tooling.
+
+
+1️⃣ El contrato gobierna, no ayuda
+Un contrato no explica ni mejora resultados.
+Define qué está permitido y qué está prohibido.
+Si algo “ayuda” → no es contrato.
+2️⃣ YAML es la ley, Markdown es el comentario
+Si borras el Markdown y el sistema sigue funcionando, está bien hecho.
+YAML: constriñe
+MD: contextualiza
+Nunca al revés.
+3️⃣ No todo gobierno es un if
+Hay reglas que existen para que el if no exista.
+puede / no_puede → frontera
+invariantes → checks
+runtime → ejecución
+No mezclar capas.
+4️⃣ Una propiedad se declara una sola vez
+Si una idea aparece dos veces, sobra una.
+Invariante o
+acción prohibida
+Nunca ambas.
+5️⃣ Congelar es una decisión técnica
+Seguir tocando un contrato correcto lo empeora.
+Cuando los problemas vienen del tooling:
+se documenta
+se congela
+se avanza
+
+DECLARAR SIEMPRE LOS ABORTS, SI HEREDAN, INDICARLO

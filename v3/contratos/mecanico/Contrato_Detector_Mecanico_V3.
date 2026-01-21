@@ -1,0 +1,49 @@
+identidad:
+  contract_id: contrato_mecanico_v3
+  version: "3.0"
+  estado: DRAFT
+
+limites_del_contrato:
+  puede:
+    - leer_entradas_indice
+    - leer_reglas_mecanicas
+    - aplicar_reglas_mecanicas_definidas_en_input
+    - emitir_hallazgos_mecanicos
+  no_puede:
+    - modificar_entradas_indice
+    - modificar_reglas_mecanicas
+
+  
+
+inputs:
+  artefactos_requeridos:
+    - entradas_indice
+    - reglas_mecanicas
+
+reglas_normativas:
+  ejecucion_exclusiva_por_reglas_mecanicas: true
+  emision_de_hallazgos_solo_por_match_literal: true
+
+output:
+  artefacto_de_salida:
+    - hallazgos_mecanicos
+  campos_de_cada_hallazgo:
+    - hallazgo_id
+    - regla_id
+    - index_id
+    - doc_id
+    - evidencia_literal
+  campos_exclusivos: true
+
+abort:
+  definidos_en_este_contrato: false
+  hereda_abort_de:
+    - Contrato_Base_Revisor_Documental_v3
+
+
+herencia_y_precedencia:
+  hereda_de:
+    - Contrato_Base_Revisor_Documental_v3
+  orden_de_precedencia:
+    - Contrato_Base_Revisor_Documental_v3
+    - contrato_mecanico_v3

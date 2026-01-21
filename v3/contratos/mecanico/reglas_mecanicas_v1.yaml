@@ -1,0 +1,9 @@
+- regla_id: RM_001
+  descripcion: deteccion_referencia_version_prefijada
+  tipo_hallazgo: referencia_version
+  usa_regex: true
+  match_regex:
+    - "_v[0-9]+(\\.[0-9]+)?"
+  scope:
+    - contenido
+  cardinalidad: uno_por_match
