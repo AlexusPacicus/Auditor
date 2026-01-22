@@ -1,0 +1,44 @@
+identidad:
+  contract_id: contrato_puerta_entrada_v3
+  version: "3.0"
+  estado: CONGELADO 
+
+limites_del_contrato:
+  limites_del_contrato:
+  puede:
+    - verificar_forma_contractual
+    - rechazar_documentos_que_no_cumplen_reglas_normativas
+ 
+inputs:
+  documentos:
+    requerido: true
+    forma:
+      doc_id: string
+      contenido: string
+
+reglas_normativas:
+  admision:
+    rechazar_si:
+      - contenido_no_es_string
+      - contenido_vacio
+
+output:
+  documentos_aceptados:
+    campos:
+      - doc_id
+      - contenido
+    campos_exclusivos: true
+
+abort:
+  condiciones:
+    - input_vacio
+    - documentos_aceptados_vacio
+  hereda_abort_de:
+    - Contrato_Base_Revisor_Documental_v3
+
+herencia_y_precedencia:
+  hereda_de:
+    - Contrato_Base_Revisor_Documental_v3
+  orden_de_precedencia:
+    - Contrato_Base_Revisor_Documental_v3
+    - Contrato_Puerta_Entrada_v3

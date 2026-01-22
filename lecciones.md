@@ -439,3 +439,158 @@ se congela
 se avanza
 
 DECLARAR SIEMPRE LOS ABORTS, SI HEREDAN, INDICARLO
+
+# Lecciones aprendidas – Diseño contractual v3
+
+Este documento recoge aprendizajes prácticos derivados de la construcción,
+auditoría y prueba de contratos ejecutables en el flujo v3.
+
+No son principios teóricos: son decisiones tomadas tras errores reales.
+
+---
+
+## 1. Un contrato no describe capacidades, describe estados prohibidos
+
+Listar lo que un agente “puede hacer” no aporta control operativo.
+El control real se ejerce definiendo **invariantes verificables** y **ABORT**.
+
+**Aprendizaje**
+- `puede` no es evaluable → ruido.
+- `no_puede` + invariantes → control real.
+
+---
+
+## 2. Todo lo que no sea evaluable binariamente no es contrato ejecutable
+
+Si una regla no puede reducirse a `true / false` comparando input y output,
+no puede ser auditada ni abortar ejecución.
+
+**Aprendizaje**
+- Reglas semánticas = decoración.
+- Reglas contables / comparables = gobernanza.
+
+---
+
+## 3. El contrato base gobierna; el contrato específico no debe repetirlo
+
+Repetir invariantes globales (no interpretación, trazabilidad literal, etc.)
+en contratos específicos introduce ruido y falsos positivos en auditorías.
+
+**Aprendizaje**
+- El contrato específico solo restringe tentaciones propias de su rol.
+- Si no añade restricción nueva, es mejor no añadir nada.
+
+---
+
+## 4. La herencia contractual no implica herencia funcional
+
+Heredar del contrato base:
+- NO añade capacidades.
+- SOLO impone prohibiciones globales.
+
+Auditores que confunden herencia normativa con funcional están mal diseñados.
+
+**Aprendizaje**
+- Heredar invariantes refuerza fronteras, no las mezcla.
+
+---
+
+## 5. El ABORT heredado no es comportamiento, es enforcement
+
+El ABORT no define “qué hace” un contrato,
+define **qué ocurre cuando se viola**.
+
+Duplicar ABORTs específicos sin necesidad es ruido.
+
+**Aprendizaje**
+- Si el contrato base ya aborta, el específico debe heredar, no redeclarar.
+
+---
+
+## 6. Un artefacto se nombra por autoridad, no por forma ni contenido
+
+Dos artefactos pueden ser idénticos en datos y forma,
+pero si los emite una autoridad contractual distinta,
+**deben tener nombres distintos**.
+
+**Aprendizaje**
+- Mismo nombre ⇒ misma autoridad.
+- Autoridad distinta ⇒ nombre distinto, aunque los datos sean iguales.
+
+---
+
+## 7. Verbo ≠ artefacto
+
+- Los **verbos** describen capacidades genéricas.
+- Los **sustantivos** describen fronteras y autoridad.
+
+Un verbo como output es una violación de diseño.
+
+**Aprendizaje**
+- El verbo nunca codifica gobernanza.
+- El artefacto sí.
+
+---
+
+## 8. Un contrato puede no transformar nada y seguir siendo necesario
+
+Algunos contratos no existen para transformar datos,
+sino para:
+- fijar fronteras de gobernanza,
+- permitir auditorías,
+- aislar responsabilidades,
+- habilitar pruebas adversarias.
+
+**Aprendizaje**
+- Transformación ≠ utilidad.
+- Gobernanza también justifica un contrato.
+
+---
+
+## 9. Un contrato no se congela cuando “parece correcto”
+
+Un contrato solo se congela tras:
+- auditoría sin hallazgos,
+- pruebas con output real del contrato anterior,
+- pruebas adversarias (orden, cardinalidad, mutación, campos extra).
+
+**Aprendizaje**
+- “Suena bien” no es criterio de congelación.
+
+---
+
+## 10. Contrato sin prompt deja el runtime implícito
+
+El contrato gobierna qué es válido.
+El prompt gobierna **cómo se ejecuta** el contrato en el LLM.
+
+Sin prompt explícito:
+- no hay reproducibilidad,
+- no hay auditoría operativa.
+
+**Aprendizaje**
+- Contrato + prompt + prueba mínima → congelable.
+- Sin prompt, el control es incompleto.
+
+---
+
+## 11. Iterar contrato → prompt → prueba es correcto en fase de diseño
+
+El enfoque batch (todos los contratos primero) propaga errores estructurales.
+La iteración corta reduce deuda y revela fallos conceptuales antes.
+
+**Aprendizaje**
+- Iterar lento al principio acelera el sistema completo.
+
+---
+
+## 12. Sensación de “esto no hace nada” suele indicar buen diseño
+
+Cuando un contrato empieza a parecer inútil,
+probablemente está bien diseñado:
+ha eliminado toda semántica innecesaria.
+
+**Aprendizaje**
+- La incomodidad suele marcar la frontera correcta.
+
+---

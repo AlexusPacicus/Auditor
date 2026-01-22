@@ -1,0 +1,11 @@
+- index_id: IDX_001
+  doc_id: DOC_OK
+  contenido: "Este documento referencia modulo_v1"
+
+- index_id: IDX_002
+  doc_id: DOC_OK2
+  contenido: "Cambio introducido en componente_v2.3"
+
+- index_id: IDX_003
+  doc_id: DOC_NO
+  contenido: "Documento sin referencias de version"

@@ -1,0 +1,57 @@
+identidad:
+  contract_id: contrato_base_revisor_documental_v3
+  version: "3.0"
+  estado: CONGELADO
+
+alcance:
+  tipo: global
+  extensible: false
+
+invariantes_globales:
+
+  aislamiento:
+    memoria_permitida: false
+    estado_persistente: false
+    dependencia_ejecuciones_previas: false
+
+  determinismo:
+    mismo_input_mismo_output: true
+    abort_si_indeterminado: true
+
+  dominio_datos:
+    solo_datos_explicitos_en_entrada: true
+    prohibido_derivar_datos: true
+    prohibido_asumir_datos: true
+
+  interpretacion:
+    evaluar_intencion: false
+    evaluar_calidad: false
+    evaluar_adecuacion: false
+
+  rediseno:
+    proponer_cambios_arquitectonicos: false
+    proponer_cambios_tecnicos: false
+    sugerir_decisiones_futuras: false
+
+  trazabilidad:
+    tipo: uno_a_uno_literal
+    obligatorio: true
+
+  salida:
+    texto_explicativo_permitido: false
+    razonamiento_permitido: false
+    justificacion_permitida: false
+
+gobernanza:
+
+  herencia:
+    tipo: restrictiva
+    relajacion_permitida: false
+
+  precedencia:
+    orden:
+      - contrato_base_revisor_documental_v3
+      - contrato_especifico
+
+fallo:
+  violacion_cualquier_regla: ABORT

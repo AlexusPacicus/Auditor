@@ -1,0 +1,42 @@
+identidad:
+  contract_id: contrato_emisor_v3
+  version: "3.0"
+  estado: CONGELADO
+
+limites_del_contrato:
+
+  no_puede:
+    - asignar_identificadores
+    - alterar_orden_o_cardinalidad
+    - emitir_multiples_veces
+    - modificar_artefacto_emitido
+
+  
+
+inputs:
+  artefactos_requeridos:
+    - hallazgos_mecanicos
+
+output:
+  artefacto_de_salida:
+    - hallazgos_emisor
+  campos_de_cada_hallazgo:
+    - hallazgo_id
+    - regla_id
+    - index_id
+    - doc_id
+    - evidencia_literal
+  campos_exclusivos: true
+
+abort:
+  definidos_en_este_contrato: false
+  hereda_abort_de:
+    - Contrato_Base_Revisor_Documental_v3
+
+
+herencia_y_precedencia:
+  hereda_de:
+    - Contrato_Base_Revisor_Documental_v3
+  orden_de_precedencia:
+    - Contrato_Base_Revisor_Documental_v3
+    - contrato_emisor_v3

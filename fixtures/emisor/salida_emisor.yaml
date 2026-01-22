@@ -1,0 +1,11 @@
+hallazgos_emisor:
+  - hallazgo_id: RM_001_IDX_001_DOC_OK_1
+    regla_id: RM_001
+    index_id: IDX_001
+    doc_id: DOC_OK
+    evidencia_literal: "_v1"
+  - hallazgo_id: RM_001_IDX_002_DOC_OK2_1
+    regla_id: RM_001
+    index_id: IDX_002
+    doc_id: DOC_OK2
+    evidencia_literal: "_v2.3"

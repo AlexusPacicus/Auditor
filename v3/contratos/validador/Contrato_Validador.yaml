@@ -1,0 +1,44 @@
+identidad:
+  contract_id: contrato_validador_v3
+  version: "3.0"
+  estado: DRAFT
+
+limites_del_contrato:
+  puede:
+    - leer_hallazgos_mecanicos
+    - leer_hallazgos_emisor
+    - verificar_igualdad_literal_entre_hallazgos
+    - emitir_resultado_binario
+  no_puede:
+    - reemitir_hallazgos
+
+reglas_normativas:
+  comparacion:
+    tipo: igualdad_literal
+    normalizacion_permitida: false
+
+  correspondencia:
+    tipo: uno_a_uno
+    orden_relevante: true
+
+  cardinalidad:
+    incremento_permitido: false
+      
+
+output:
+  resultado_validacion:
+    tipo: binario
+    valores_posibles:
+      - ok
+      
+abort:
+  hereda_abort_de:
+    - Contrato_Base_Revisor_Documental_v3
+
+
+herencia_y_precedencia:
+  hereda_de:
+    - Contrato_Base_Revisor_Documental_v3
+  orden_de_precedencia:
+    - Contrato_Base_Revisor_Documental_v3
+    - Contrato_Emisor_v3
