@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 .venv/
 .env
+lecciones.md
+gobierno_sistema.md
+plantilla_contratos.md
+
