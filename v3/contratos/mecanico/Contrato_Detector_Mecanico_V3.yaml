@@ -1,13 +1,12 @@
 identidad:
   contract_id: contrato_mecanico_v3
   version: "3.0"
-  estado: DRAFT
+  estado: CONGELADO
 
 limites_del_contrato:
   puede:
     - leer_entradas_indice
     - leer_reglas_mecanicas
-    - aplicar_reglas_mecanicas_definidas_en_input
     - emitir_hallazgos_mecanicos
   no_puede:
     - modificar_entradas_indice
@@ -18,7 +17,15 @@ limites_del_contrato:
 inputs:
   artefactos_requeridos:
     - entradas_indice
-    - reglas_mecanicas
+
+
+dependencias_exogenas:
+  artefactos:
+    - nombre: reglas_mecanicas
+      modo: solo_lectura
+      produccion: exogena
+      modificable: false
+      derivable: false
 
 reglas_normativas:
   ejecucion_exclusiva_por_reglas_mecanicas: true

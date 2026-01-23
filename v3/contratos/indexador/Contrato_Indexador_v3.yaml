@@ -43,4 +43,4 @@ herencia_y_precedencia:
     - Contrato_Base_Revisor_Documental_v3
   orden_de_precedencia:
     - Contrato_Base_Revisor_Documental_v3
-    - Contrato_Indexador_v3
+    - contrato_indexador_v3

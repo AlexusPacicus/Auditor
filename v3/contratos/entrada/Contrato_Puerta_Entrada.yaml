@@ -1,10 +1,9 @@
 identidad:
   contract_id: contrato_puerta_entrada_v3
   version: "3.0"
-  estado: CONGELADO 
+  estado: CONGELADO
 
 limites_del_contrato:
-  limites_del_contrato:
   puede:
     - verificar_forma_contractual
     - rechazar_documentos_que_no_cumplen_reglas_normativas
@@ -41,4 +40,4 @@ herencia_y_precedencia:
     - Contrato_Base_Revisor_Documental_v3
   orden_de_precedencia:
     - Contrato_Base_Revisor_Documental_v3
-    - Contrato_Puerta_Entrada_v3
+    - contrato_puerta_entrada_v3

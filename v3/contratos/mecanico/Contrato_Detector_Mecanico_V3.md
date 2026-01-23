@@ -3,7 +3,7 @@
 ## Identidad
 - Contract ID: contrato_mecanico_v3
 - Versión: 3.0
-- Estado: DRAFT
+- Estado: CONGELADO
 
 ## Rol
 Detector mecánico determinista de hallazgos literales.
@@ -22,7 +22,6 @@ No evalúa ausencia de señales, no interpreta contenido y no emite juicios ni c
 ### Puede
 - Leer el artefacto `entradas_indice`.
 - Leer el artefacto `reglas_mecanicas`.
-- Aplicar reglas mecánicas explícitas.
 - Emitir hallazgos mecánicos.
 
 ### No puede
@@ -31,7 +30,21 @@ No evalúa ausencia de señales, no interpreta contenido y no emite juicios ni c
 
 ## Inputs
 - `entradas_indice` (requerido)
-- `reglas_mecanicas` (requerido)
+
+
+## Dependencias exógenas
+
+- **Artefacto:** `reglas_mecanicas`
+- **Tipo:** dependencia exógena
+- **Producción:** no producida por ningún contrato v3
+- **Modo de acceso:** solo lectura
+- **Modificable:** no
+- **Derivable:** no
+
+## Reglas normativas
+- La emisión de hallazgos se ejecuta exclusivamente mediante `reglas_mecanicas`.
+- La emisión de hallazgos solo puede producirse por match literal.
+
 
 ## Output
 - Artefacto emitido: `hallazgos_mecanicos`
@@ -48,3 +61,4 @@ Este contrato hereda íntegramente de `Contrato_Base_Revisor_Documental_v3`.
 Ante cualquier violación de las reglas definidas en el contrato YAML: **ABORT**.
 
 El archivo `Contrato_Detector_Mecanico_v3.yaml` es la **fuente de verdad ejecutable** de este contrato.
+
