@@ -1,7 +1,7 @@
 identidad:
   contract_id: contrato_validador_v3
   version: "3.0"
-  estado: DRAFT
+  estado: CONGELADO 
 
 limites_del_contrato:
   puede:
